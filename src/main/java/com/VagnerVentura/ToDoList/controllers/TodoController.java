@@ -2,9 +2,11 @@ package com.VagnerVentura.ToDoList.controllers;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,9 +34,20 @@ public class TodoController {
 		  return todoService.findById(id);
 	}
 	
-	@PostMapping(value = "/{id}")
+	@PostMapping
 	public Todo create (@RequestBody Todo todo) {
 		return todoService.create(todo);
+	}
+	
+	@PutMapping (value = "/{id}")
+	public Todo update(@RequestBody Todo todo, @PathVariable Long id){
+		todo.setId(id);
+		return todoService.update(todo);
+	}
+	
+	@DeleteMapping("/{id}")
+	public void delete (@PathVariable Long id) {
+		todoService.delete(id);
 	}
 	
 }

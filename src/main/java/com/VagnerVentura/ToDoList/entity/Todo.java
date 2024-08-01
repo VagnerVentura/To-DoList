@@ -15,8 +15,9 @@ public class Todo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String nome;
-	private String descrição;
+	private String descricao;
 	private boolean realizado;
 	private int prioridade;
 	
@@ -33,10 +34,10 @@ public class Todo {
 		this.nome = nome;
 	}
 	public String getDescrição() {
-		return descrição;
+		return descricao;
 	}
 	public void setDescrição(String descrição) {
-		this.descrição = descrição;
+		this.descricao = descrição;
 	}
 	public boolean isRealizado() {
 		return realizado;
@@ -53,7 +54,7 @@ public class Todo {
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(descrição, id, nome, prioridade, realizado);
+		return Objects.hash(descricao, id, nome, prioridade, realizado);
 	}
 	
 	@Override
@@ -65,7 +66,7 @@ public class Todo {
 		if (getClass() != obj.getClass())
 			return false;
 		Todo other = (Todo) obj;
-		return Objects.equals(descrição, other.descrição) && Objects.equals(id, other.id)
+		return Objects.equals(descricao, other.descricao) && Objects.equals(id, other.id)
 				&& Objects.equals(nome, other.nome) && prioridade == other.prioridade && realizado == other.realizado;
 	}
 	
