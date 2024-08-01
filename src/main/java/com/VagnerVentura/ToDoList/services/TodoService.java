@@ -33,11 +33,14 @@ public class TodoService {
 		Todo entity = todoRepository.getReferenceById(todo.getId());
 		
 		entity.setId(todo.getId());
+		entity.setNome(todo.getNome());
 		entity.setDescrição(todo.getDescrição());
 		entity.setPrioridade(todo.getPrioridade());
 		entity.setRealizado(todo.isRealizado());
-
-		return todoRepository.save(entity);
+		
+		var newTodo = todoRepository.save(entity);
+		
+		return newTodo ;
 	}
 	
 	public void delete(Long id) {
