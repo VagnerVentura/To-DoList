@@ -2,20 +2,25 @@ package com.VagnerVentura.ToDoList.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.VagnerVentura.ToDoList.entity.Todo;
+import com.VagnerVentura.ToDoList.entity.User;
 import com.VagnerVentura.ToDoList.repositories.TodoRepository;
+import com.VagnerVentura.ToDoList.repositories.UserRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class TodoService {
 
+	@Autowired
 	private TodoRepository todoRepository;
-
-	public TodoService(TodoRepository repository) {
-		todoRepository = repository;
-	}
-
+	
+	@Autowired
+	private UserRepository userRepository;
+	
 	public List<Todo> findAll() {
 		return todoRepository.findAll();
 	}
@@ -24,7 +29,11 @@ public class TodoService {
 		return todoRepository.findById(id).orElseThrow();
 	}
 	
+	@Transactional
 	public Todo create(Todo todo) {
+		var entity = userRepository.findById(todo.getUserId())
+				.orElseThrow(() -> new RuntimeException("User not found"));
+		todo.setUser(entity);		
 		return todoRepository.save(todo);
 	}
 

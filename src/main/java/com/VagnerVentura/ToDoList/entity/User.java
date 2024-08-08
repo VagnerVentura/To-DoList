@@ -1,9 +1,17 @@
 package com.VagnerVentura.ToDoList.entity;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -24,10 +32,22 @@ public class User {
 	private String email;
 	private String senha;
 	
+	
+	@OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
+	private List<Todo> toDos;
+	
+	public List<Todo> getTodos() {
+		return toDos;
+	}
+
+	public void setTodos(List<Todo> todos) {
+		this.toDos = todos;
+	}
+
 	public User() {}
 
 	public User(Long id, String nome, String email, String senha, Integer matricula) {
-		super();
 		this.id = id;
 		this.matricula = matricula;
 		this.nome = nome;

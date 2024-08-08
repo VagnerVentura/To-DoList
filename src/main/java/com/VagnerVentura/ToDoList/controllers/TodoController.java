@@ -2,6 +2,7 @@ package com.VagnerVentura.ToDoList.controllers;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,11 +19,12 @@ import com.VagnerVentura.ToDoList.services.TodoService;
 @RequestMapping("/todos")
 public class TodoController {
 
+	@Autowired
 	private TodoService todoService;
 	
-	public TodoController(TodoService service) {
-		todoService = service;
-	}
+//	public TodoController(TodoService service) {
+//		todoService = service;
+//	}
 	
 	@GetMapping
 	public List<Todo> findAll(){
@@ -31,7 +33,7 @@ public class TodoController {
 	
 	@GetMapping(value = "/{id}")
 	public Todo findById(@PathVariable(value= "id") Long id) {
-		  return todoService.findById(id);
+		return todoService.findById(id);
 	}
 	
 	@PostMapping

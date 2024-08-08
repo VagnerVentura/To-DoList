@@ -2,6 +2,7 @@ package com.VagnerVentura.ToDoList.controllers;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,11 +21,12 @@ import com.VagnerVentura.ToDoList.services.UserService;
 @RequestMapping("/users")
 public class UserController {
 
+	@Autowired
 	private UserService service;
 	
-	public UserController(UserService service) {
-		this.service = service; 
-	}
+//	public UserController(UserService service) {
+//		this.service = service; 
+//	}
 	
 	@GetMapping
 	public  List<UserDTO> findAll(){

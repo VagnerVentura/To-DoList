@@ -3,6 +3,7 @@ package com.VagnerVentura.ToDoList.services;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.VagnerVentura.ToDoList.dto.UserDTO;
@@ -13,11 +14,8 @@ import com.VagnerVentura.ToDoList.repositories.UserRepository;
 @Service
 public class UserService {
 
+	@Autowired
 	private UserRepository repository;
-	
-	public UserService (UserRepository repository) {
-		this.repository = repository;
-	}
 	
 	public List<UserDTO> findAll() {
 		var entity = repository.findAll();
@@ -32,6 +30,11 @@ public class UserService {
 	public UserDTO findById(UserDTO dto) {
 		User userdto = repository.findById(dto.getId()).orElseThrow();
 		return UserMapper.toDTO(userdto);
+	}
+	
+	public User findByIdCreateTodo(Long userId) {
+		User entity = repository.findById(userId).orElseThrow();
+		return entity;
 	}
 
 	public UserDTO update(UserDTO dto) {

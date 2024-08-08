@@ -9,8 +9,8 @@ public class UserDTO {
 	private String email;
 	private String senha;
 	
-	public UserDTO(String nome, Integer matricula, String email) {
-		super();
+	public UserDTO(String nome, Integer matricula, String email, Long id) {
+		this.id= id;
 		this.nome = nome;
 		this.matricula = matricula;
 		this.email = email;
