@@ -46,6 +46,10 @@ public class UserService {
 		entity.setEmail(dto.getEmail());
 		entity.setMatricula(dto.getMatricula());
 		entity.setSenha(dto.getSenha());
+		
+		entity.setTodos(dto.getTodos().stream().map(todos->{
+			todos.getId();
+		}));
 				
 		var newUser = repository.save(entity);
 		return UserMapper.toDTO(newUser);	

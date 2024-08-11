@@ -1,5 +1,8 @@
 package com.VagnerVentura.ToDoList.dto;
 
+import java.util.List;
+
+import com.VagnerVentura.ToDoList.entity.Todo;
 
 public class UserDTO {
 
@@ -8,6 +11,7 @@ public class UserDTO {
 	private Integer matricula;
 	private String email;
 	private String senha;
+	private List<Todo> todos;
 	
 	public UserDTO(String nome, Integer matricula, String email, Long id) {
 		this.id= id;
@@ -16,6 +20,14 @@ public class UserDTO {
 		this.email = email;
 	}
 	
+	public List<Todo> getTodos() {
+		return todos;
+	}
+
+	public void setTodos(List<Todo> todo) {
+		this.todos =  todo;
+	}
+
 	public UserDTO() {
 	}
 

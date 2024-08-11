@@ -32,9 +32,8 @@ public class User {
 	private String email;
 	private String senha;
 	
-	
+	@JsonIgnore	
 	@OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JsonIgnore
 	private List<Todo> toDos;
 	
 	public List<Todo> getTodos() {
